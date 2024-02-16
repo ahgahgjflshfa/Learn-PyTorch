@@ -177,9 +177,9 @@ import torchvision
 def pred_and_plot_image(
     model: torch.nn.Module,
     image_path: str,
-    class_names: List[str] = None,
+    class_names: list[str] = None,
     transform=None,
-    device: torch.device = "cuda" if torch.cuda.is_available() else "cpu",
+    device: torch.device | str = "cuda" if torch.cuda.is_available() else "cpu",
 ):
     """Makes a prediction on a target image with a trained model and plots the image.
 
@@ -239,6 +239,8 @@ def pred_and_plot_image(
         title = f"Pred: {target_image_pred_label} | Prob: {target_image_pred_probs.max().cpu():.3f}"
     plt.title(title)
     plt.axis(False)
+
+    plt.show()
 
 def set_seeds(seed: int=42):
     """Sets random sets for torch operations.
